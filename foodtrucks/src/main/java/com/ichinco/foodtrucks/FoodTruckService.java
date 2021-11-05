@@ -5,9 +5,9 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,8 +41,8 @@ public class FoodTruckService {
                     .setHeader()
                     .setSkipHeaderRecord(true)
                     .build();
-            File file = new ClassPathResource("food_trucks.csv").getFile();
-            Iterable<CSVRecord> records = CSVParser.parse(new FileReader(file), format);
+            InputStream stream = new ClassPathResource("food_trucks.csv").getInputStream();
+            Iterable<CSVRecord> records = CSVParser.parse(new InputStreamReader(stream), format);
 
             for (CSVRecord record : records) {
                 FoodTruck truck = new FoodTruck();
