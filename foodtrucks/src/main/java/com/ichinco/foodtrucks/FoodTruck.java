@@ -4,6 +4,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * FoodTruck is a data model object for a food truck.
+ *
+ * At present only two fields are required - location id and block.
+ */
 public class FoodTruck {
 
     @NotNull

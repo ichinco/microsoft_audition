@@ -1,22 +1,16 @@
 package com.ichinco.foodtrucks;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * FoodTruckController provides an interface for accessing information about food trucks.
+ *
+ */
 @RestController
 public class FoodTruckController {
 
@@ -30,6 +24,12 @@ public class FoodTruckController {
         this.foodTruckService = foodTruckService;
     }
 
+    /**
+     * addFoodtruck adds a new foodtruck to our service. Since this is an
+     * in-memory service, the food truck will not be persisted.
+     *
+     * @param truck a valid food truck object
+     */
     @PostMapping("/foodtruck")
     public void addFoodtruck(@Valid @RequestBody FoodTruck truck) {
         try {
@@ -39,6 +39,12 @@ public class FoodTruckController {
         }
     }
 
+    /**
+     * Gets a food truck by its id
+     *
+     * @param locationId id of the food truck
+     * @return a foodtruck if found
+     */
     @GetMapping("/foodtruck/{locationId}")
     public FoodTruck getFoodtruckByLocationId(@PathVariable(value = "locationId") Integer locationId){
         FoodTruck foodTruck = this.foodTruckService.getFoodTruckById(locationId);
@@ -50,6 +56,12 @@ public class FoodTruckController {
         return foodTruck;
     }
 
+    /**
+     * Searches the list of food trucks by parameter
+     *
+     * @param block
+     * @return a list of food truck objects
+     */
     @GetMapping("/foodtrucks")
     public List<FoodTruck> getFoodtruckByBlock(@RequestParam(value = "block") String block){
         return this.foodTruckService.getFoodTrucksByBlock(block);

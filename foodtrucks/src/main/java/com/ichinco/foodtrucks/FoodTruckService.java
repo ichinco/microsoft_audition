@@ -4,9 +4,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +12,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * FoodTruckService provides an abstraction around a csv file provided by the city of San Francisco
+ * with information about permitted food trucks. The implemenation is currently in-memory but could be
+ * easily swapped out with a database or cache server implementation.
+ *
+ */
 public class FoodTruckService {
 
     private Map<Integer, FoodTruck> foodTruckLocationMap;
