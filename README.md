@@ -13,11 +13,11 @@ Challenge](https://github.com/erikschlegel/take-home-engineering-challenge).
 
 ## Usage
 
-| Method | Path | Demo | Description |
-| --- | ---- | ---- | ----------- |
-| GET | `/v1.0/foodtruck/[LOCATION_ID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck/364218) | Returns a food food truck json object for the given id |
-| GET | `/v1.0/foodtrucks?block=[BLOCKID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtrucks?block=0234) | Returns a list of food truck object by block |
-| POST | `/v1.0/foodtruck` | curl -v -H "Content-Type: application/json" -X POST -d '{"locationId":"2","block":"def", "applicant":"Best Sushi in SF"}' https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck | Adds a new food truck. Required fields are locationId and block |
+|  Path | Demo | Description |
+| --- | ---- | ----------- |
+| GET `/v1.0/foodtruck/[LOCATION_ID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck/364218) | Returns a food food truck json object for the given id |
+| GET `/v1.0/foodtrucks?block=[BLOCKID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtrucks?block=0234) | Returns a list of food truck object by block |
+| POST `/v1.0/foodtruck` | `curl -v -H "Content-Type: application/json" <br> -d '{"locationId":"2","block":"def", "applicant":"Best Sushi in SF"}' <br> https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck` | Adds a new food truck. Required fields are locationId and block. |
 
 ## Development Setup
 
