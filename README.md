@@ -11,19 +11,13 @@ other cities. It supports three use cases:
 This is a solution to the [Take Home Engineering
 Challenge](https://github.com/erikschlegel/take-home-engineering-challenge).
 
-## Example Usage and Demo
+## Usage
 
-### Get a food truck by id
-`/foodtruck/[LOCATION_ID]`
-[Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtruck/364218)
-
-### Get a list of food trucks by block
-`/foodtrucks?block=[BLOCKID]`
-[Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtrucks?block=0234)
-
-### Add a new food truck
-POST `/foodtruck`
-`{"locationId":1, block:"abc"}`
+| Method | Path | Demo | Description |
+| --- | ---- | ---- | ----------- |
+| GET | `/v1/foodtruck/[LOCATION_ID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtruck/364218) | Returns a food food truck json object for the given id |
+| GET | `/v1/foodtrucks?block=[BLOCKID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtrucks?block=0234) | Returns a list of food truck object by block |
+| POST | `/v1/foodtruck` | | Adds a new food truck. Required fields are locationId and block |
 
 ## Development Setup
 
@@ -57,4 +51,22 @@ To see the logs:
 
 ## Design
 
+For this project we use a simple MVC design.
+
+The data is stored in memory on the server in two hash maps:
+
+* A hash map of location id to food truck object
+* A hash map of block to list of location ids
+
+Each food truck object is around 500B, so a million food trucks can
+fit into .5GB of RAM. This means that a single server could be used
+for even several million food trucks.
+
 ## Next Steps
+
+I did not have time to consider the following aspects as part of this project:
+
+1. Metrics and Alarms
+2. Security
+3. CI/CD
+4. Load testing

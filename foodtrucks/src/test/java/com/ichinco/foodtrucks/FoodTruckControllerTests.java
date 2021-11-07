@@ -22,7 +22,7 @@ public class FoodTruckControllerTests {
 
     @Test
     public void testGetById() throws Exception {
-        this.mvc.perform(get("/foodtruck/364218")
+        this.mvc.perform(get("/v1/foodtruck/364218")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(result -> content().string(containsString("The Chai Cart")));
@@ -30,14 +30,14 @@ public class FoodTruckControllerTests {
 
     @Test
     public void testGetByIdMissing() throws Exception {
-        this.mvc.perform(get("/foodtruck/364216")
+        this.mvc.perform(get("/v1/foodtruck/364216")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void testGetByBlock() throws Exception {
-        this.mvc.perform(get("/foodtrucks?block=5311")
+        this.mvc.perform(get("/v1/foodtrucks?block=5311")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(result -> content().string(containsString("Reecees Soulicious")));
@@ -45,7 +45,7 @@ public class FoodTruckControllerTests {
 
     @Test
     public void testAddTruckHappyPath() throws Exception {
-        this.mvc.perform(post("/foodtruck")
+        this.mvc.perform(post("/v1/foodtruck")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"locationId\":1, \"block\":\"abc\"}"))
                 .andExpect(status().isOk());
@@ -53,7 +53,7 @@ public class FoodTruckControllerTests {
 
     @Test
     public void testMissingData() throws Exception {
-        this.mvc.perform(post("/foodtruck")
+        this.mvc.perform(post("/v1/foodtruck")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"block\":\"abc\"}"))
                 .andExpect(status().isBadRequest());
@@ -61,7 +61,7 @@ public class FoodTruckControllerTests {
 
     @Test
     public void testDuplicateId() throws Exception {
-        this.mvc.perform(post("/foodtruck")
+        this.mvc.perform(post("/v1/foodtruck")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"locationId\":364218, \"block\":\"abc\"}"))
                 .andExpect(status().isBadRequest());

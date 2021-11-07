@@ -30,7 +30,7 @@ public class FoodTruckController {
      *
      * @param truck a valid food truck object
      */
-    @PostMapping("/foodtruck")
+    @PostMapping("/v1/foodtruck")
     public void addFoodtruck(@Valid @RequestBody FoodTruck truck) {
         try {
             this.foodTruckService.addFoodTruck(truck);
@@ -45,7 +45,7 @@ public class FoodTruckController {
      * @param locationId id of the food truck
      * @return a foodtruck if found
      */
-    @GetMapping("/foodtruck/{locationId}")
+    @GetMapping("/v1/foodtruck/{locationId}")
     public FoodTruck getFoodtruckByLocationId(@PathVariable(value = "locationId") Integer locationId){
         FoodTruck foodTruck = this.foodTruckService.getFoodTruckById(locationId);
 
@@ -62,7 +62,7 @@ public class FoodTruckController {
      * @param block
      * @return a list of food truck objects
      */
-    @GetMapping("/foodtrucks")
+    @GetMapping("/v1/foodtrucks")
     public List<FoodTruck> getFoodtruckByBlock(@RequestParam(value = "block") String block){
         return this.foodTruckService.getFoodTrucksByBlock(block);
     }
