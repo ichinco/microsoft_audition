@@ -1,5 +1,6 @@
 package com.ichinco.foodtrucks;
 
+import com.ichinco.foodtrucks.model.FoodTruck;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

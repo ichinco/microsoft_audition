@@ -1,4 +1,4 @@
-package com.ichinco.foodtrucks;
+package com.ichinco.foodtrucks.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

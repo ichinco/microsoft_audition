@@ -1,5 +1,8 @@
 package com.ichinco.foodtrucks;
 
+import com.ichinco.foodtrucks.model.FoodTruck;
+import com.ichinco.foodtrucks.model.FoodTruckListResponse;
+import com.ichinco.foodtrucks.model.FoodTruckResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,6 +17,7 @@ import java.util.List;
 @RestController
 public class FoodTruckController {
 
+    private static String VERSION = "1.0";
     private FoodTruckService foodTruckService;
 
     public FoodTruckController() {
@@ -30,7 +34,7 @@ public class FoodTruckController {
      *
      * @param truck a valid food truck object
      */
-    @PostMapping("/v1/foodtruck")
+    @PostMapping("/v1.0/foodtruck")
     public void addFoodtruck(@Valid @RequestBody FoodTruck truck) {
         try {
             this.foodTruckService.addFoodTruck(truck);
@@ -45,15 +49,17 @@ public class FoodTruckController {
      * @param locationId id of the food truck
      * @return a foodtruck if found
      */
-    @GetMapping("/v1/foodtruck/{locationId}")
-    public FoodTruck getFoodtruckByLocationId(@PathVariable(value = "locationId") Integer locationId){
+    @GetMapping("/v1.0/foodtruck/{locationId}")
+    public FoodTruckResponse getFoodtruckByLocationId(@PathVariable(value = "locationId") Integer locationId){
         FoodTruck foodTruck = this.foodTruckService.getFoodTruckById(locationId);
 
         if (foodTruck == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Food Truck not found");
         }
 
-        return foodTruck;
+        FoodTruckResponse response = new FoodTruckResponse(VERSION, foodTruck);
+
+        return response;
     }
 
     /**
@@ -62,8 +68,10 @@ public class FoodTruckController {
      * @param block
      * @return a list of food truck objects
      */
-    @GetMapping("/v1/foodtrucks")
-    public List<FoodTruck> getFoodtruckByBlock(@RequestParam(value = "block") String block){
-        return this.foodTruckService.getFoodTrucksByBlock(block);
+    @GetMapping("/v1.0/foodtrucks")
+    public FoodTruckListResponse getFoodtruckByBlock(@RequestParam(value = "block") String block){
+        List<FoodTruck> foodTrucksByBlock = this.foodTruckService.getFoodTrucksByBlock(block);
+        FoodTruckListResponse response = new FoodTruckListResponse(VERSION, foodTrucksByBlock);
+        return response;
     }
 }

@@ -1,10 +1,10 @@
 package com.ichinco.foodtrucks;
 
+import com.ichinco.foodtrucks.model.FoodTruck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.ArrayList;
 import java.util.List;

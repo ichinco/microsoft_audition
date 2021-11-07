@@ -15,9 +15,9 @@ Challenge](https://github.com/erikschlegel/take-home-engineering-challenge).
 
 | Method | Path | Demo | Description |
 | --- | ---- | ---- | ----------- |
-| GET | `/v1/foodtruck/[LOCATION_ID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtruck/364218) | Returns a food food truck json object for the given id |
-| GET | `/v1/foodtrucks?block=[BLOCKID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/foodtrucks?block=0234) | Returns a list of food truck object by block |
-| POST | `/v1/foodtruck` | | Adds a new food truck. Required fields are locationId and block |
+| GET | `/v1.0/foodtruck/[LOCATION_ID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck/364218) | Returns a food food truck json object for the given id |
+| GET | `/v1.0/foodtrucks?block=[BLOCKID]` | [Demo](https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtrucks?block=0234) | Returns a list of food truck object by block |
+| POST | `/v1.0/foodtruck` | curl -v -H "Content-Type: application/json" -X POST -d '{"locationId":"2","block":"def", "applicant":"Best Sushi in SF"}' https://foodtruckservice-foodtruckapplication.azuremicroservices.io/v1.0/foodtruck | Adds a new food truck. Required fields are locationId and block |
 
 ## Development Setup
 
@@ -66,7 +66,9 @@ for even several million food trucks.
 
 I did not have time to consider the following aspects as part of this project:
 
+1. Persistent storage for the added food trucks. As written, restarting the server will reset to the initial list.
 1. Metrics and Alarms
 2. Security
 3. CI/CD
 4. Load testing
+5. Custom error messages
